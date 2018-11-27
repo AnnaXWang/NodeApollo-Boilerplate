@@ -1,0 +1,7 @@
+{
+	"extends": "airbnb",
+	"parserOptions": {
+        "sourceType": "module"
+    },
+	"extends": "strongloop"
+}
