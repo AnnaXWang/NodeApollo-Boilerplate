@@ -1,15 +1,21 @@
+import { find } from 'lodash';
+import { usertypes } from '../staticdata';
+
 const User = `
  type User {
+   id: ID!
    username: String!
    password: String!
-   candidate: Int!
-   employer: Int!
-   referencer: Int!
+   userType: UserType!
  }
 `;
 
 export const types = () => [User];
 
 export const typeResolvers = {
-
+  User: {
+    userType: (user) => {
+      return find(usertypes, { id: user.userTypeId });
+    },
+  },
 };
