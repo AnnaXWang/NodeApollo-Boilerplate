@@ -7,3 +7,4 @@
 * https://medium.com/@xoor/coding-a-graphql-api-with-node-js-c02d617f49f4
 * https://www.apollographql.com/docs/apollo-server/v2/essentials/schema.html
 * Style - https://www.apollographql.com/docs/apollo-server/v2/essentials/schema.html#style
+* https://github.com/apollographql/apollo-client

@@ -14,7 +14,7 @@ export const types = () => [User];
 
 export const typeResolvers = {
   User: {
-    userType: (user) => {
+    userType: (user, args, context, info) => {
       return find(usertypes, { id: user.userTypeId });
     },
   },
