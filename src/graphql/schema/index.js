@@ -2,25 +2,25 @@ import fs from 'fs';
 import path from 'path';
 import { merge } from 'lodash';
 
-//Used to query the data
+// Used to query the data
 const Query = `
   type Query {
     status: String
   }
 `;
 
-//used to alter data
+// used to alter data
 const Mutation = `
   type Mutation {
     _empty: String
   }
 `;
 
-//used to define how queries/mutations will be handled by our app
+// used to define how queries/mutations will be handled by our app
 let resolvers = {
   Query: {
-    status: () => 'ok'
-  }
+    status: () => 'ok',
+  },
 };
 
 const typeDefs = [Query, Mutation];
@@ -36,5 +36,5 @@ fs.readdirSync(__dirname)
 
 export {
   typeDefs,
-  resolvers
+  resolvers,
 };

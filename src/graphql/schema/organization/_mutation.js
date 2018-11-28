@@ -1,5 +1,5 @@
-// We’ll define here the mutations and
-// the associated resolvers to each mutation type
+// We’ll define here the mutations and the
+// associated resolvers to each mutation type
 
 const Mutation = '';
 // `
