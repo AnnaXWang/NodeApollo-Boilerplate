@@ -1,5 +1,23 @@
 # Node.js Express Server + Apollo Boilerplate
 
+### About
+
+* This repo is a work-in-progress to design a scalable and modular Node.js Express Server with Apollo (GraphQL)
+
+### Setup
+* Install NodeJS/npm: https://nodejs.org/en/download/
+    * Linux: `apt-get install nodejs`
+    * MacOS: `brew install nodejs`
+    * Windows: direct download, or use Bash on Windows 10
+* Install node dependencies
+    
+        $ npm install 
+        
+* To run the linter (to be done before any commit)
+    
+        $ npm run lint 
+   
+
 ### References
 * https://www.robinwieruch.de/minimal-node-js-babel-setup/
 * https://www.robinwieruch.de/graphql-apollo-server-tutorial/
