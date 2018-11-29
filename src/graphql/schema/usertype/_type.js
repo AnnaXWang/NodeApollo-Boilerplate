@@ -2,7 +2,7 @@ const UserType = `
   type UserType {
     id: ID!
    	candidate: Boolean!,
-    referencer: Boolean!,
+    reference: Boolean!,
     employer: Boolean!,
   }
 `;

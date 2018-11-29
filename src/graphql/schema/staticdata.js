@@ -23,19 +23,19 @@ const usertypes = [
   {
     id: 1,
     candidate: true,
-    referencer: false,
+    reference: false,
     employer: false,
   },
   {
     id: 2,
     candidate: false,
-    referencer: true,
+    reference: true,
     employer: false,
   },
   {
     id: 3,
     candidate: false,
-    referencer: false,
+    reference: false,
     employer: true,
   },
 ];

@@ -19,7 +19,7 @@
    
 
 ### Query Examples
-* Install node dependencies
+* Example of queries the User model with arguments
     
         {
   			user(userTypeId: 2) {
