@@ -28,6 +28,16 @@
   			}
 		} 
         
+### Mutation Examples
+* Example of mutations to add a User model 
+    
+        {
+  			addUser(username: "test1", password: "test2") {
+    			username
+    			password
+  			}
+		} 
+
 ### References
 * https://www.robinwieruch.de/minimal-node-js-babel-setup/
 * https://www.robinwieruch.de/graphql-apollo-server-tutorial/
