@@ -18,10 +18,10 @@ export const mutationTypes = () => [Mutation];
 export const mutationResolvers = {
   Mutation: {
     addUser: (parent, args, context, info) => {
-      const newUser = { 
-      	id: nextId++, 
-      	username: args.username, 
-      	password: args.password 
+      const newUser = {
+        id: nextId++,
+        username: args.username,
+        password: args.password,
       };
       usertypes.push(newUser);
       return newUser;
