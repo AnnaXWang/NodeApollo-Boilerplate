@@ -16,7 +16,7 @@ export const queryTypes = () => [Query];
 
 export const queryResolvers = {
   Query: {
-    users: () => users,
+    users: (parent, args, context, info) => users,
     user: (parent, args, context, info) => {
       return find(users, args);
     },
