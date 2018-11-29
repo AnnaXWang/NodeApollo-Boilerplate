@@ -18,6 +18,16 @@
         $ npm run lint 
    
 
+### Query Examples
+* Install node dependencies
+    
+        {
+  			user(userTypeId: 2) {
+    			username
+    			password
+  			}
+		} 
+        
 ### References
 * https://www.robinwieruch.de/minimal-node-js-babel-setup/
 * https://www.robinwieruch.de/graphql-apollo-server-tutorial/
@@ -26,3 +36,4 @@
 * https://www.apollographql.com/docs/apollo-server/v2/essentials/schema.html
 * Style - https://www.apollographql.com/docs/apollo-server/v2/essentials/schema.html#style
 * https://github.com/apollographql/apollo-client
+* Learning Apollo Queries - https://graphql.org/learn/queries/

@@ -4,16 +4,22 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import { typeDefs, resolvers } from './graphql/schema';
 
+// create the server according to our schema
 const apollo = new ApolloServer({ typeDefs, resolvers });
 
 const app = express();
 app.use(cors());
+
+// add an API call to test that our server is running correctly
 app.get('/api/status', (req, res) => {
   res.send({ status: 'ok' });
 });
 
+// add middleware so that our Apollo Server runs express
 apollo.applyMiddleware({ app });
 
-app.listen({ port: 8000 }, () => {
-  console.log(' 🚀 Apollo Server on http://localhost:8000/graphql');
+// listen on the correct port
+const port = process.env.PORT || 8000;
+app.listen({ port: port }, () => {
+  console.log(' 🚀 Apollo Server on http://localhost:' + port + '/graphql');
 });

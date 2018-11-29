@@ -2,21 +2,28 @@ import fs from 'fs';
 import path from 'path';
 import { merge } from 'lodash';
 
-// Used to query the data
+/*
+Create a base Query to be extended to query the data
+*/
 const Query = `
   type Query {
     status: String
   }
 `;
 
-// used to alter data
+/*
+Create a base Mutation to be extended to update data
+*/
 const Mutation = `
   type Mutation {
     _empty: String
   }
 `;
 
-// used to define how queries/mutations will be handled by our app
+/*
+ Create a base Mutation to be extended to define how
+ queries/mutations will be handled
+*/
 let resolvers = {
   Query: {
     status: () => 'ok',
@@ -25,7 +32,10 @@ let resolvers = {
 
 const typeDefs = [Query, Mutation];
 
-// Read the current directory and load types and resolvers automatically
+/*
+ Read all nested schema directores in the current directory
+ and load types and resolvers automatically
+*/
 fs.readdirSync(__dirname)
   .filter(dir => (dir.indexOf('.') < 0))
   .forEach((dir) => {
@@ -34,6 +44,9 @@ fs.readdirSync(__dirname)
     typeDefs.push(tmp.types);
   });
 
+/*
+ Exports the schema to be used by the Apollo Server
+*/
 export {
   typeDefs,
   resolvers,
