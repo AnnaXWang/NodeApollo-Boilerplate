@@ -1,5 +1,6 @@
 import { users, usertypes } from '../staticdata';
 import { filter, find } from 'lodash';
+import models from '../../../models';
 
 // NOTE: id arguments must be passed as Int and not ID
 const Query = `
@@ -16,7 +17,9 @@ export const queryTypes = () => [Query];
 
 export const queryResolvers = {
 	Query: {
-		users: (parent, args, context, info) => users,
+		users: async(parent, args, context, info) => {
+			return await models.User.findAll();
+		},
 		user: (parent, args, context, info) => {
 			return find(users, args);
 		},
