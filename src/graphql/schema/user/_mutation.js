@@ -7,7 +7,7 @@ import { _ } from 'lodash';
 
 const Mutation = `
   extend type Mutation {
-  	addUser(username: String!, password: String!): User
+    addUser(username: String!, password: String!): User
   }
 `;
 
@@ -18,10 +18,10 @@ export const mutationTypes = () => [Mutation];
 export const mutationResolvers = {
   Mutation: {
     addUser: (parent, args, context, info) => {
-      const newUser = { 
-      	id: nextId++, 
-      	username: args.username, 
-      	password: args.password 
+      const newUser = {
+        id: nextId++,
+        username: args.username,
+        password: args.password,
       };
       usertypes.push(newUser);
       return newUser;

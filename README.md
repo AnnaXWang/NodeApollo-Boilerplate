@@ -9,6 +9,20 @@
     * Linux: `apt-get install nodejs`
     * MacOS: `brew install nodejs`
     * Windows: direct download, or use Bash on Windows 10
+
+* Install Postgres locally (Note: you may also have to install it globally)
+         
+        $ npm install pg --save
+
+    * Additional download for Postgres.app and its GUI: https://postgresapp.com/
+* Create a local Postgres database called "boilerplate_db"
+        
+        $ psql CREATE DATABASE boilerplate_db;
+
+    * Ideally, you should not set up a username and password for your local database
+    * 'postgres://localhost/boilerplate_db' should point to this database
+    * Look at knexfile.js in the root directory to understand how the server accesses your local database  
+    
 * Install node dependencies
     
         $ npm install 
