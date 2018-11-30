@@ -15,31 +15,31 @@ const Query = `
 export const queryTypes = () => [Query];
 
 export const queryResolvers = {
-  Query: {
-    users: (parent, args, context, info) => users,
-    user: (parent, args, context, info) => {
-      return find(users, args);
-    },
-    candidates: (parent, args, context, info) => {
-      const candidateUserTypes = filter(usertypes, {candidate: true});
-      const candidateUserTypeIds = candidateUserTypes.map(a => a.id);
-      return filter(users, function(o) {
-        return candidateUserTypeIds.indexOf(o.userTypeId) >= 0;
-      });
-    },
-    references: (parent, args, context, info) => {
-      const referenceUserTypes = filter(usertypes, {reference: true});
-      const referenceUserTypeIds = referenceUserTypes.map(a => a.id);
-      return filter(users, function(o) {
-        return referenceUserTypeIds.indexOf(o.userTypeId) >= 0;
-      });
-    },
-    employers: (parent, args, context, info) => {
-      const employerUserTypes = filter(usertypes, {employer: true});
-      const employerUserTypeIds = employerUserTypes.map(a => a.id);
-      return filter(users, function(o) {
-        return employerUserTypeIds.indexOf(o.userTypeId) >= 0;
-      });
-    },
-  },
+	Query: {
+		users: (parent, args, context, info) => users,
+		user: (parent, args, context, info) => {
+			return find(users, args);
+		},
+		candidates: (parent, args, context, info) => {
+			const candidateUserTypes = filter(usertypes, {candidate: true});
+			const candidateUserTypeIds = candidateUserTypes.map(a => a.id);
+			return filter(users, function(o) {
+				return candidateUserTypeIds.indexOf(o.userTypeId) >= 0;
+			});
+		},
+		references: (parent, args, context, info) => {
+			const referenceUserTypes = filter(usertypes, {reference: true});
+			const referenceUserTypeIds = referenceUserTypes.map(a => a.id);
+			return filter(users, function(o) {
+				return referenceUserTypeIds.indexOf(o.userTypeId) >= 0;
+			});
+		},
+		employers: (parent, args, context, info) => {
+			const employerUserTypes = filter(usertypes, {employer: true});
+			const employerUserTypeIds = employerUserTypes.map(a => a.id);
+			return filter(users, function(o) {
+				return employerUserTypeIds.indexOf(o.userTypeId) >= 0;
+			});
+		},
+	},
 };

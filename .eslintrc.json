@@ -1,7 +1,12 @@
 {
-	"extends": "airbnb",
+	"extends": "strongloop",
+	"rules": {
+    "no-mixed-spaces-and-tabs": [2, "smart-tabs"],
+    "indent": [2, "tab"],
+    "max-len": ["error", { "ignoreTrailingComments": true }]
+  }, 
 	"parserOptions": {
-        "sourceType": "module"
-    },
-	"extends": "strongloop"
+    "sourceType": "module",
+    "ecmaVersion": 8
+  }
 }

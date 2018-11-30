@@ -25,9 +25,9 @@ const Mutation = `
  queries/mutations will be handled
 */
 let resolvers = {
-  Query: {
-    status: () => 'ok',
-  },
+	Query: {
+		status: () => 'ok',
+	},
 };
 
 const typeDefs = [Query, Mutation];
@@ -37,17 +37,17 @@ const typeDefs = [Query, Mutation];
  and load types and resolvers automatically
 */
 fs.readdirSync(__dirname)
-  .filter(dir => (dir.indexOf('.') < 0))
-  .forEach((dir) => {
+	.filter(dir => (dir.indexOf('.') < 0))
+	.forEach((dir) => {
     const tmp = require(path.join(__dirname, dir)).default; // eslint-disable-line
-    resolvers = merge(resolvers, tmp.resolvers);
-    typeDefs.push(tmp.types);
-  });
+		resolvers = merge(resolvers, tmp.resolvers);
+		typeDefs.push(tmp.types);
+	});
 
 /*
  Exports the schema to be used by the Apollo Server
 */
 export {
-  typeDefs,
-  resolvers,
+	typeDefs,
+	resolvers,
 };

@@ -63,3 +63,4 @@
 * Learning Apollo Queries - https://graphql.org/learn/queries/
 * Mutations - https://www.apollographql.com/docs/react/essentials/mutations.html, https://graphql.org/learn/queries/#mutations
 * Mutations Tutorial - https://blog.apollographql.com/react-graphql-tutorial-mutations-764d7ec23c15
+* Sequelize Documentation - http://docs.sequelizejs.com/

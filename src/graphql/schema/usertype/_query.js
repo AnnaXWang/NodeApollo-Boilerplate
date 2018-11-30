@@ -11,10 +11,10 @@ const Query = `
 export const queryTypes = () => [Query];
 
 export const queryResolvers = {
-  Query: {
-    usertypes: (parent, args, context, info) => usertypes,
-    usertype: (parent, args, context, info) => {
-      return find(usertypes, args);
-    },
-  },
+	Query: {
+		usertypes: (parent, args, context, info) => usertypes,
+		usertype: (parent, args, context, info) => {
+			return find(usertypes, args);
+		},
+	},
 };

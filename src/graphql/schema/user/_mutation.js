@@ -16,15 +16,15 @@ let nextId = _.max(usertypes.map(a => a.id)) + 1;
 export const mutationTypes = () => [Mutation];
 
 export const mutationResolvers = {
-  Mutation: {
-    addUser: (parent, args, context, info) => {
-      const newUser = {
-        id: nextId++,
-        username: args.username,
-        password: args.password,
-      };
-      usertypes.push(newUser);
-      return newUser;
-    },
-  },
+	Mutation: {
+		addUser: (parent, args, context, info) => {
+			const newUser = {
+				id: nextId++,
+				username: args.username,
+				password: args.password,
+			};
+			usertypes.push(newUser);
+			return newUser;
+		},
+	},
 };
