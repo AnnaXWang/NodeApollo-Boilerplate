@@ -1,4 +1,4 @@
-const user = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
 	const User = sequelize.define('user', {
 		username: {
 			type: DataTypes.STRING,
@@ -40,20 +40,15 @@ const user = (sequelize, DataTypes) => {
 			allowNull: false,
 			defaultValue: true,
 		},
-	},
-	{
+	}, {
 		uniqueKeys: [
 			{
 				fields: ['email', 'isActive'],
 			},
 		],
 	});
-
-	User.associate = models => {
-		User.hasOne(models.Usertype, { onDelete: 'CASCADE' });
+	User.associate = function(models) {
+		User.hasOne(models.usertype, { onDelete: 'CASCADE' });
 	};
-
 	return User;
 };
-
-export default user;

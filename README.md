@@ -15,6 +15,11 @@
         $ npm install pg --save
 
     * Additional download for Postgres.app and its GUI: https://postgresapp.com/
+
+* Install Sequelize CLI globally
+         
+        $ npm install -g sequelize-cli --save
+
 * Create a local Postgres database called "boilerplate_db"
         
         $ psql CREATE DATABASE boilerplate_db;

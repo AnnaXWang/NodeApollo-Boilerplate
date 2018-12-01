@@ -1,9 +1,5 @@
-const usertype = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
 	const Usertype = sequelize.define('usertype', {
-		uuid: {
-			type: DataTypes.UUID,
-			primaryKey: true,
-		},
 		isCandidate: {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
@@ -19,13 +15,6 @@ const usertype = (sequelize, DataTypes) => {
 			allowNull: false,
 			defaultValue: false,
 		},
-	});
-
-	Usertype.associate = models => {
-		Usertype.belongsTo(models.User);
-	};
-
+	}, {});
 	return Usertype;
 };
-
-export default usertype;
