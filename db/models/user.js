@@ -40,6 +40,16 @@ module.exports = (sequelize, DataTypes) => {
 			allowNull: false,
 			defaultValue: true,
 		},
+		createdAt: {
+			allowNull: false,
+			type: DataTypes.DATE,
+			defaultValue: sequelize.fn('NOW'),
+		},
+		updatedAt: {
+			allowNull: false,
+			type: DataTypes.DATE,
+			defaultValue: sequelize.fn('NOW'),
+		},
 	}, {
 		uniqueKeys: [
 			{
