@@ -26,8 +26,18 @@
 
     * Ideally, you should not set up a username and password for your local database
     * 'postgres://localhost/boilerplate_db' should point to this database
-    * Look at knexfile.js in the root directory to understand how the server accesses your local database  
-    
+    * Look at knexfile.js in the root directory to understand how the server accesses your local database 
+
+* Run migrations and seed database
+        
+        $ sequelize db:migrate
+        $ sequelize db:seed:all
+
+* If necessary to reset migrations and seeds 
+
+        $ sequelize db:migrate:undo
+        $ sequelize db:seed:undo:all
+
 * Install node dependencies
     
         $ npm install 
@@ -69,3 +79,5 @@
 * Mutations - https://www.apollographql.com/docs/react/essentials/mutations.html, https://graphql.org/learn/queries/#mutations
 * Mutations Tutorial - https://blog.apollographql.com/react-graphql-tutorial-mutations-764d7ec23c15
 * Sequelize Documentation - http://docs.sequelizejs.com/
+* Sequelize models vs migrations - https://www.duringthedrive.com/2017/05/06/models-migrations-sequelize-node/
+* Create foreign keys - https://stackoverflow.com/questions/50584682/sequelize-model-migration-file-and-foreign-key-which-one-is-right

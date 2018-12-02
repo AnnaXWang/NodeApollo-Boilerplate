@@ -26,5 +26,10 @@ module.exports = (sequelize, DataTypes) => {
 			defaultValue: DataTypes.NOW,
 		},
 	}, {});
+
+	Usertype.associate = function(models) {
+		Usertype.belongsTo(models.user, {foreignKey: 'id', target_key: 'userId'});
+	};
+
 	return Usertype;
 };

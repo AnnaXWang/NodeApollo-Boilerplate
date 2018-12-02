@@ -24,7 +24,6 @@ module.exports = (sequelize, DataTypes) => {
 		email: {
 			type: DataTypes.STRING,
 			allowNull: false,
-			unique: true,
 			validate: {
 				isEmail: {
 					args: true,
@@ -50,15 +49,11 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.DATE,
 			defaultValue: sequelize.fn('NOW'),
 		},
-	}, {
-		uniqueKeys: [
-			{
-				fields: ['email', 'isActive'],
-			},
-		],
-	});
+	}, {});
+
 	User.associate = function(models) {
-		User.hasOne(models.usertype, { onDelete: 'CASCADE' });
+		User.hasOne(models.usertype, {foreignKey: 'userId'});
 	};
+	
 	return User;
 };
