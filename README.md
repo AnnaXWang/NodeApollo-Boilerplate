@@ -49,13 +49,19 @@
 
 ### Query Examples
 * Example of queries the User model with arguments
-    
+
         {
-  			user(userTypeId: 2) {
-    			username
-    			password
-  			}
-		} 
+            user(username: "John") {
+            username
+            password
+            userType{
+              id
+              isCandidate
+              isReference
+              isEmployer
+            }
+          }
+        }
         
 ### Mutation Examples
 * Example of mutations to add a User model 

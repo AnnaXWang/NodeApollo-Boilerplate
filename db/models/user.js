@@ -54,6 +54,5 @@ module.exports = (sequelize, DataTypes) => {
 	User.associate = function(models) {
 		User.hasOne(models.usertype, {foreignKey: 'userId'});
 	};
-	
 	return User;
 };

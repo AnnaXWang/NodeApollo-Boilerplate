@@ -1,9 +1,9 @@
 const UserType = `
   type UserType {
     id: ID!
-   	candidate: Boolean!,
-    reference: Boolean!,
-    employer: Boolean!,
+   	isCandidate: Boolean!,
+    isReference: Boolean!,
+    isEmployer: Boolean!,
   }
 `;
 

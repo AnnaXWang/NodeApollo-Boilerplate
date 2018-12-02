@@ -5,11 +5,11 @@ module.exports = {
 			password: 'Doe',
 			email: 'demo@demo.com',
 		}], {})
-			.then( => {
+			.then(() => {
 				return queryInterface.bulkInsert('usertypes', [{
 					userId: 1,
 					isCandidate: true,
-				}], {})
+				}], {});
 			});
 	},
 

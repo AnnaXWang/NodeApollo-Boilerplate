@@ -1,5 +1,4 @@
-import { find } from 'lodash';
-import { usertypes } from '../staticdata';
+import models from '../../../../db/models';
 
 const User = `
  type User {
@@ -15,8 +14,11 @@ export const types = () => [User];
 export const typeResolvers = {
 	User: {
 		// describes how the userType field will be filled
-		userType: (user, args, context, info) => {
-			return find(usertypes, { id: user.userTypeId });
+		userType: async(user, args, context, info) => {
+			return await models.usertype.findOne({
+				where: { userId: user.id },
+			});
+
 		},
 	},
 };

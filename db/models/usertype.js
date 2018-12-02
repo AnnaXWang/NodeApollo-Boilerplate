@@ -28,8 +28,9 @@ module.exports = (sequelize, DataTypes) => {
 	}, {});
 
 	Usertype.associate = function(models) {
-		Usertype.belongsTo(models.user, {foreignKey: 'id', target_key: 'userId'});
+		Usertype.belongsTo(models.user,
+			{foreignKey: 'id', target_key: 'userId'}
+		);
 	};
-
 	return Usertype;
 };
