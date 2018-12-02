@@ -5,6 +5,8 @@ const User = `
    id: ID!
    username: String!
    password: String!
+   email: String!
+   isActive: Boolean!
    userType: UserType!
  }
 `;

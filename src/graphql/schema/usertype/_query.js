@@ -1,5 +1,4 @@
-import { usertypes } from '../staticdata';
-import { find } from 'lodash';
+import models from '../../../../db/models';
 
 const Query = `
  extend type Query {
@@ -12,9 +11,13 @@ export const queryTypes = () => [Query];
 
 export const queryResolvers = {
 	Query: {
-		usertypes: (parent, args, context, info) => usertypes,
-		usertype: (parent, args, context, info) => {
-			return find(usertypes, args);
+		usertypes: async(parent, args, context, info) => {
+			return await models.usertype.findAll();
+		},
+		usertype: async(parent, args, context, info) => {
+			return await models.usertype.findOne({
+				where: args,
+			});
 		},
 	},
 };
