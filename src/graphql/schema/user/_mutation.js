@@ -6,7 +6,14 @@ import models from '../../../../db/models';
 
 const Mutation = `
   extend type Mutation {
-	addUser(username: String!, password: String!, email: String!): User
+	addUser(
+		username: String!,
+		password: String!,
+		email: String!,
+		isCandidate: Boolean,
+		isReference: Boolean,
+		isEmployer: Boolean
+	): User
   }
 `;
 
@@ -21,12 +28,26 @@ export const mutationResolvers = {
 				email: args.email,
 			};
 			return new Promise(function(resolve, reject) {
-				models.user.create(newUser)
-					.then(function(user) {
-						resolve(user);
-					}).catch(function(insertError) {
-						reject(insertError);
-					});
+				// create transaction to create a new user and a new usertype
+				let returnedUser;
+				return models.sequelize.transaction(function(t) { // chain all queries here
+					return models.user.create(newUser, {transaction: t})
+						.then(function(user) {
+							returnedUser = user;
+							return models.usertype.create({
+								userId: returnedUser.id,
+								isCandidate: args.isCandidate,
+								isReference: args.isReference,
+								isEmployer: args.isEmployer,
+							}, {transaction: t});
+						});
+				}).then(function(result) {
+				  // Transaction has been committed
+				  resolve(returnedUser);
+				}).catch(function(err) {
+				  // Transaction has been rolled back
+				  reject(err);
+				});
 			});
 		},
 	},

@@ -87,3 +87,4 @@
 * Sequelize Documentation - http://docs.sequelizejs.com/
 * Sequelize models vs migrations - https://www.duringthedrive.com/2017/05/06/models-migrations-sequelize-node/
 * Create foreign keys - https://stackoverflow.com/questions/50584682/sequelize-model-migration-file-and-foreign-key-which-one-is-right
+* Sequelize transactions - http://docs.sequelizejs.com/manual/tutorial/transactions.html
