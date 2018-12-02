@@ -1,4 +1,3 @@
-import { users, usertypes } from '../staticdata';
 import { filter } from 'lodash';
 import models from '../../../../db/models';
 
@@ -13,6 +12,16 @@ const Query = `
  }
 `;
 
+const queryUserType = async(key) => {
+	return await models.user.findAll({
+		include: models.usertype,
+	}).then((users) => {
+		return filter(users, function(user) {
+			return user.usertype && user.usertype[key] === true;
+		});
+	});
+};
+
 export const queryTypes = () => [Query];
 
 export const queryResolvers = {
@@ -25,26 +34,14 @@ export const queryResolvers = {
 				where: args,
 			});
 		},
-		candidates: (parent, args, context, info) => {
-			const candidateUserTypes = filter(usertypes, {candidate: true});
-			const candidateUserTypeIds = candidateUserTypes.map(a => a.id);
-			return filter(users, function(o) {
-				return candidateUserTypeIds.indexOf(o.userTypeId) >= 0;
-			});
+		candidates: async(parent, args, context, info) => {
+			return queryUserType('isCandidate');
 		},
 		references: (parent, args, context, info) => {
-			const referenceUserTypes = filter(usertypes, {reference: true});
-			const referenceUserTypeIds = referenceUserTypes.map(a => a.id);
-			return filter(users, function(o) {
-				return referenceUserTypeIds.indexOf(o.userTypeId) >= 0;
-			});
+			return queryUserType('isReference');
 		},
 		employers: (parent, args, context, info) => {
-			const employerUserTypes = filter(usertypes, {employer: true});
-			const employerUserTypeIds = employerUserTypes.map(a => a.id);
-			return filter(users, function(o) {
-				return employerUserTypeIds.indexOf(o.userTypeId) >= 0;
-			});
+			return queryUserType('isEmployer');
 		},
 	},
 };
