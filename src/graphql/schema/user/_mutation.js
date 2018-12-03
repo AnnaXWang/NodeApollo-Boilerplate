@@ -8,13 +8,9 @@ import models from '../../../../db/models';
 
 const Mutation = `
   extend type Mutation {
+	
 	addUser(
-		username: String!,
-		password: String!,
-		email: String!,
-		isCandidate: Boolean,
-		isReference: Boolean,
-		isEmployer: Boolean
+		input: newUserDetails!
 	): Token!
 
 	signIn(
@@ -36,6 +32,7 @@ const createToken = async(user, secret, expiresIn) => {
 export const mutationResolvers = {
 	Mutation: {
 		addUser: (parent, args, context, info) => {
+			args = args.input;
 			const newUser = {
 				username: args.username,
 				password: args.password,

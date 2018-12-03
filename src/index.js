@@ -26,7 +26,7 @@ apollo.applyMiddleware({ app });
 // listen on the correct port
 const port = process.env.PORT || 8000;
 app.listen({ port: port }, () => {
-	const output = 'í ½íº€ Apollo Server on http://localhost:';
+	const output = 'ðŸš€ Apollo Server on http://localhost:';
 	console.log(output + port + '/graphql');
 });
 
