@@ -2,6 +2,7 @@
  We’ll define here the mutations and
  the associated resolvers to each mutation type
 */
+import jwt from 'jsonwebtoken';
 import models from '../../../../db/models';
 
 const Mutation = `
@@ -13,11 +14,18 @@ const Mutation = `
 		isCandidate: Boolean,
 		isReference: Boolean,
 		isEmployer: Boolean
-	): User
+	): Token!
   }
 `;
 
 export const mutationTypes = () => [Mutation];
+
+const createToken = async(user, secret, expiresIn) => {
+	const { id, email, username } = user;
+	return await jwt.sign({ id, email, username }, secret, {
+		expiresIn,
+	});
+};
 
 export const mutationResolvers = {
 	Mutation: {
@@ -43,7 +51,9 @@ export const mutationResolvers = {
 						});
 				}).then(function(result) {
 				  // Transaction has been committed
-				  resolve(returnedUser);
+				  resolve({
+						token: createToken(returnedUser, context.secret, '30m'),
+				  });
 				}).catch(function(err) {
 				  // Transaction has been rolled back
 				  reject(err);

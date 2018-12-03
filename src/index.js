@@ -6,7 +6,11 @@ import { typeDefs, resolvers } from './graphql/schema';
 // import { sequelize } from './models';
 
 // create the server according to our schema
-const apollo = new ApolloServer({ typeDefs, resolvers });
+const apollo = new ApolloServer({ typeDefs, resolvers,
+	context: async() => ({
+		secret: process.env.SECRET,
+	}),
+});
 
 const app = express();
 app.use(cors());
@@ -22,7 +26,7 @@ apollo.applyMiddleware({ app });
 // listen on the correct port
 const port = process.env.PORT || 8000;
 app.listen({ port: port }, () => {
-	const output = 'ðŸš€ Apollo Server on http://localhost:';
+	const output = 'í ½íº€ Apollo Server on http://localhost:';
 	console.log(output + port + '/graphql');
 });
 

@@ -11,7 +11,13 @@ const User = `
  }
 `;
 
-export const types = () => [User];
+const Token = `
+ type Token {
+   token: String!
+ }
+`;
+
+export const types = () => [User, Token];
 
 export const typeResolvers = {
 	User: {

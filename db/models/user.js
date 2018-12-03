@@ -1,3 +1,6 @@
+import bcrypt from 'bcrypt';
+import server_config from '../../config/server_config';
+
 module.exports = (sequelize, DataTypes) => {
 	const User = sequelize.define('user', {
 		username: {
@@ -17,6 +20,10 @@ module.exports = (sequelize, DataTypes) => {
 				notEmpty: {
 					args: true,
 					msg: 'A password must have some text',
+				},
+				len: {
+					args: [7, 42],
+					msg: 'A password must be between 7 and 42 characters',
 				},
 			},
 		},
@@ -52,6 +59,14 @@ module.exports = (sequelize, DataTypes) => {
 			defaultValue: sequelize.fn('NOW'),
 		},
 	}, {});
+	User.beforeCreate(async user => {
+		user.password = await user.generatePasswordHash();
+	});
+
+	User.prototype.generatePasswordHash = async function() {
+		const saltRounds = parseInt(server_config.bcryptseed, 10);
+		return await bcrypt.hash(this.password, saltRounds);
+	};
 
 	User.associate = function(models) {
 		User.hasOne(models.usertype, {foreignKey: 'userId'});
