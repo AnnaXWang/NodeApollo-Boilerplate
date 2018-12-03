@@ -4,6 +4,8 @@ const UserType = `
    	isCandidate: Boolean!,
     isReference: Boolean!,
     isEmployer: Boolean!,
+    createdAt: Date!
+   	updatedAt: Date!
   }
 `;
 

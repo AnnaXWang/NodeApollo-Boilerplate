@@ -5,7 +5,7 @@ import models from '../../../../db/models';
 const Query = `
  extend type Query {
    users: [User]
-   user(id: Int, username: String): User
+   user(input: userSearchInput!): User
    candidates: [User]
    references: [User]
    employers: [User]
@@ -30,6 +30,7 @@ export const queryResolvers = {
 			return await models.user.findAll();
 		},
 		user: async(parent, args, context, info) => {
+			args = args.input;
 			return await models.user.findOne({
 				where: args,
 			});

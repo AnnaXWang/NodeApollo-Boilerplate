@@ -1,13 +1,15 @@
 import models from '../../../../db/models';
 
 const User = `
- type User {
+ type User{
    id: ID!
    username: String!
    password: String!
    email: String!
    isActive: Boolean!
    userType: UserType!
+   createdAt: Date!
+   updatedAt: Date!
  }
 `;
 

@@ -1,7 +1,7 @@
 // Input types are used as arguments for Mutations and Queries.
 
-const newUserDetails = `
-	input newUserDetails {
+const newUserInput = `
+	input newUserInput {
 		username: String!
 		password: String!
 		email: String!
@@ -11,4 +11,19 @@ const newUserDetails = `
 	}
 `;
 
-export default () => [newUserDetails];
+const signInInput = `
+	input signInInput {
+		password: String!
+		email: String!
+	}
+`;
+
+const userSearchInput = `
+	input userSearchInput {
+		id: Int
+		username: String
+		email: String
+	}
+`;
+
+export default () => [newUserInput, signInInput, userSearchInput];

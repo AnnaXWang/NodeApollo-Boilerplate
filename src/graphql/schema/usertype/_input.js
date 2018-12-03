@@ -1,5 +1,9 @@
 // Input types are used as arguments for Mutations.
 
-const Input = '';
+const usertypeSearchInput = `
+	input usertypeSearchInput {
+		id: Int!
+	}
+`;
 
-export default () => [Input];
+export default () => [usertypeSearchInput];

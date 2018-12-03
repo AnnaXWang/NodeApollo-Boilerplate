@@ -10,12 +10,11 @@ const Mutation = `
   extend type Mutation {
 	
 	addUser(
-		input: newUserDetails!
+		input: newUserInput!
 	): Token!
 
 	signIn(
-		password: String!,
-		email: String!,
+		input: signInInput!
 	): Token!
   }
 `;
@@ -65,6 +64,7 @@ export const mutationResolvers = {
 		},
 
 		signIn: (parent, args, context, info) => {
+			args = args.input;
 			return new Promise(function(resolve, reject) {
 				return models.user.findOne({
 					where: {email: args.email},

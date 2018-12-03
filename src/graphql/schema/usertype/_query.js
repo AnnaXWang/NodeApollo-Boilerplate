@@ -3,7 +3,7 @@ import models from '../../../../db/models';
 const Query = `
  extend type Query {
    usertypes: [UserType]
-   usertype(id: Int): UserType
+   usertype(input: usertypeSearchInput): UserType
  }
 `;
 
@@ -15,6 +15,7 @@ export const queryResolvers = {
 			return await models.usertype.findAll();
 		},
 		usertype: async(parent, args, context, info) => {
+			args = args.input;
 			return await models.usertype.findOne({
 				where: args,
 			});
