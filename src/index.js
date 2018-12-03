@@ -3,7 +3,6 @@ import cors from 'cors';
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import { typeDefs, resolvers } from './graphql/schema';
-// import { sequelize } from './models';
 
 // create the server according to our schema
 const apollo = new ApolloServer({ typeDefs, resolvers,

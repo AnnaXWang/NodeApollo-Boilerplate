@@ -16,7 +16,22 @@
 
     * Additional download for Postgres.app and its GUI: https://postgresapp.com/
 
-* Install Sequelize CLI globally
+* Optional: Install CRA globally (only if you want to create a react app from scratch)
+         
+        $ npm install -g create-react-app
+
+* Update the eslint version in the client/frontend to match the eslint in the backend
+         
+        $ cd frontend/node_modules/react-scripts
+        $ rm -rf node_modules
+        $ //go into frontend/node_modules/react-scripts/package.json and change the eslint dependency to be 5.9.0
+        $ npm install
+
+* Install concurrently (https://www.npmjs.com/package/concurrently) to test in development
+
+        $ npm install -g concurrently
+
+* Install Sequelize CLI globally if you don't already have it
          
         $ npm install -g sequelize-cli --save
 
@@ -103,3 +118,6 @@
 * Sequelize models vs migrations - https://www.duringthedrive.com/2017/05/06/models-migrations-sequelize-node/
 * Create foreign keys - https://stackoverflow.com/questions/50584682/sequelize-model-migration-file-and-foreign-key-which-one-is-right
 * Sequelize transactions - http://docs.sequelizejs.com/manual/tutorial/transactions.html
+* React + Apollo Webapp - https://developer.okta.com/blog/2018/10/11/build-simple-web-app-with-express-react-graphql
+* Add React to existing Apollo server - https://auth0.com/blog/develop-modern-apps-with-react-graphql-apollo-and-add-authentication/
+* Import vs require in JS - https://insights.untapt.com/webpack-import-require-and-you-3fd7f5ea93c0
