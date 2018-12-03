@@ -3,6 +3,7 @@
  the associated resolvers to each mutation type
 */
 import jwt from 'jsonwebtoken';
+import { AuthenticationError, UserInputError } from 'apollo-server';
 import models from '../../../../db/models';
 
 const Mutation = `
@@ -14,6 +15,11 @@ const Mutation = `
 		isCandidate: Boolean,
 		isReference: Boolean,
 		isEmployer: Boolean
+	): Token!
+
+	signIn(
+		password: String!,
+		email: String!,
 	): Token!
   }
 `;
@@ -60,5 +66,38 @@ export const mutationResolvers = {
 				});
 			});
 		},
+
+		signIn: (parent, args, context, info) => {
+			return new Promise(function(resolve, reject) {
+				return models.user.findOne({
+					where: {email: args.email},
+				}).then(function(user) {
+					if (!user) {
+						reject(UserInputError(
+						  'No user found with this login credentials.',
+						));
+					}
+
+					return user.validatePassword(args.password)
+						.then(function(isValid) {
+							if (!isValid) {
+								reject(
+									new AuthenticationError('Invalid password.')
+								);
+							}
+							const secret = context.secret;
+							const newToken = createToken(user, secret, '30m');
+							resolve({
+								token: newToken,
+							});
+						}).catch(function(err) {
+						  reject(err);
+						});
+				}).catch(function(err) {
+				  reject(err);
+				});
+			});
+		},
+
 	},
 };

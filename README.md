@@ -65,13 +65,18 @@
         
 ### Mutation Examples
 * Example of mutations to add a User model 
-    
-        {
-  			addUser(username: "test1", password: "test2") {
-    			username
-    			password
-  			}
-		} 
+
+        mutation {
+          addUser(username: "asdf", password: "asdf123123123123", email: "email901322@gmail.com", isEmployer: true) {
+            token
+          }
+        }
+
+        mutation {
+          signIn(email:"email901322@gmail.com",  password: "asdf123123123123"){
+            token
+          }
+        } 
 
 ### References
 * https://www.robinwieruch.de/minimal-node-js-babel-setup/
