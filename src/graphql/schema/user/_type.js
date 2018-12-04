@@ -19,9 +19,9 @@ const Token = `
  }
 `;
 
-const types = () => [User, Token];
+export const types = () => [User, Token];
 
-const typeResolvers = {
+export const typeResolvers = {
 	User: {
 		// describes how the userType field will be filled
 		userType: async(user, args, context, info) => {
@@ -32,8 +32,3 @@ const typeResolvers = {
 		},
 	},
 };
-
-module.exports = {
-	types,
-	typeResolvers
-}

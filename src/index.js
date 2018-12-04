@@ -28,4 +28,3 @@ app.listen({ port: port }, () => {
 	const output = '🚀 Apollo Server on http://localhost:';
 	console.log(output + port + '/graphql');
 });
-

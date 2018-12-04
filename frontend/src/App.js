@@ -6,15 +6,15 @@ import CreateBook from './components/CreateBook';
 import './App.css';
 
 class App extends Component {
-  render() {
-    return (
-      <div>
-        <Nav />
-        <Route exact path='/' component={ListBook} />
-        <Route exact path='/create' component={CreateBook} />
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div>
+				<Nav />
+				<Route exact path='/' component={ListBook} />
+				<Route exact path='/create' component={CreateBook} />
+			</div>
+		);
+	}
 }
 
 export default App;
