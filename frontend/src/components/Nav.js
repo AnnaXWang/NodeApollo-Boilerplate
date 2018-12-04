@@ -4,6 +4,10 @@ import '../App.css';
 
 class Nav extends Component {
 
+	 constructor(props){
+    super(props);
+  }
+
 	render() {
 		return (
 			<nav className="navbar navbar-default">

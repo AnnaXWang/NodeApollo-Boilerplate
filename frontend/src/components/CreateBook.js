@@ -2,75 +2,107 @@ import React from 'react';
 import { Mutation } from "react-apollo";
 import { gql } from "apollo-boost";
 
-const ADD_BOOK = gql`
-	mutation addBook($title: String!, $cover_image_url: String!, $average_rating: Float!, $authorId: Int!){
-		addBook(title: $title, cover_image_url: $cover_image_url, average_rating: $average_rating, authorId: $authorId){
-			id
-			title
-			cover_image_url
-			average_rating
-		}
+const ADD_USER = gql`
+	mutation addUser($username: String!, $email: String!, $password: Float!, $isCandidate: Boolean, $isEmployer: Boolean, $isReference: Boolean){
+		addUser(
+      input: {
+        username: $username,
+        email: $email,
+        password: $password,
+        isCandidate: $isCandidate,
+        isEmployer: $isEmployer,
+        isReference: $isReference
+    }) {
+    	token
+    }
 	}
 `
+class CreateBook extends Component {
+	constructor (props) {
+    super(props);
+    this.state = {
+      email : "",
+			username : "",
+			password : "",
+			isReference : null,
+			isEmployer : null,
+			isCandidate : null,
+    }
+	}
 
-export default () => (
-	<Mutation mutation={ADD_BOOK} onCompleted={() => window.location.href="/" }>
-			{(addBook, { data, loading, error }) => (
+render () {
+
+	<Mutation mutation={ADD_USER} onCompleted={() => window.location.href="/" }>
+			{(addUser, { data, loading, error }) => (
 				<div>
 					<div className='w-100 pa4 flex justify-center'>
 						<form
 							onSubmit={e => {
+								console.log(e)
 								e.preventDefault();
-								addBook({ variables: {
-									title: this.title.value,
-									cover_image_url: this.coverImage.value,
-									average_rating: parseFloat(this.rating.value),
-									authorId: parseInt(this.authorId.value)
+								addUser({ variables: {
+									email: this.email.value,
+									username: this.username.value,
+									password: parseFloat(this.password.value),
+									isCandidate: this.isCandidate.value,
+									isReference: this.isReference.value,
+									isEmployer: this.isEmployer.value,
 								}});
-
-								this.title.value = "";
-								this.coverImage.value = "";
-								this.rating.value = "";
-								this.authorId.value = "";
+								this.setState({email: "", username: "", password: "", isReference: false, isEmployer: false, isCandidate: false})
 							}}
 						>
-
-
 						<div style={{ maxWidth: 400 }} className=''>
-							<label> Book Title: </label>
+							<label> Email: </label>
 							<input
 								className='w-100 pa3 mv2'
 								type="text"
 								required
-								placeholder='Title of the book'
-								ref={node => this.title = node} />
+								placeholder='janedoe@gmail.com'
+								ref={node => this.setState({email: node}) } />
 
-							<label> Book Cover Image: </label>
+							<label> Username: </label>
 							<input
 								className='w-100 pa3 mv2'
-								type="url"
+								type="text"
 								required
-								placeholder='Image Url'
-								ref={node => this.coverImage = node} />
+								placeholder='Jane Doe'
+								ref={node => this.setState({username: node})} />
 
-							<label> Book Rating as decided by Popular votes: </label>
+							<label> Password: </label>
 							<input
 								className='w-100 pa3 mv2'
-								type="number"
+								type="password"
 								required
 								min="1"
 								max="10"
-								placeholder='Average Rating'
-								ref={node => this.rating = node} />
+								placeholder='1234567'
+								ref={node => this.setState({password: node})} />
 
-							<label> Author: </label>
+							<label> Candidate? </label>
 							<select
-								ref={select => this.authorId = select}
-								name="authorId" required>
-								<option value="">Select an author</option>
-								<option value="1">Wole Soyinka</option>
-								<option value="2">Tomi Adeyemi</option>
-								<option value="3">Chimamanda Adichie</option>
+								ref={select => this.isCandidate = select}
+								name="isCandidate" required>
+								<option value="">Select a value</option>
+								<option value="true">Yes</option>
+								<option value="false">No</option>
+							</select>
+
+							<label> Reference? </label>
+							<select
+								ref={select => this.isReference = select}
+								name="isReference" required>
+								<option value="">Select a value</option>
+								<option value="true">Yes</option>
+								<option value="false">No</option>
+							</select>
+
+							<label> Employer? </label>
+							<select
+								ref={select => this.isEmployer = select}
+								name="isEmployer" required>
+								<option value="">Select a value</option>
+								<option value="true">Yes</option>
+								<option value="false">No</option>
 							</select>
 						</div>
 
@@ -83,4 +115,4 @@ export default () => (
 				</div>
 			)}
 	</Mutation>
-);
+}
