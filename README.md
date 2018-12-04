@@ -22,9 +22,13 @@
 
 * Update the eslint version in the client/frontend to match the eslint in the backend
          
+        $ cd frontend
+        $ rm -rf node_modules
+        $ npm uninstall babel-eslint
+        $ npm uninstall eslint
         $ cd frontend/node_modules/react-scripts
         $ rm -rf node_modules
-        $ //go into frontend/node_modules/react-scripts/package.json and change the eslint dependency to be 5.9.0
+        $ //go into frontend/node_modules/react-scripts/package.json and change the eslint dependency to be 5.9.0 and the babel-eslint dependency to be 10.0.1
         $ npm install
 
 * Install concurrently (https://www.npmjs.com/package/concurrently) to test in development
