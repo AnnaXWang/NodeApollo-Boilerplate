@@ -23,7 +23,6 @@ export default () => (
 		{({ loading, error, data }) => {
 			if (loading) return <p>Loading...</p>;
 			if (error) return <p>Error...</p>;
-
 			return (
 				<div className="col-sm-12">
 					{!loading &&
@@ -31,7 +30,7 @@ export default () => (
 							<div className="col-sm-4" key={user.id}>
 								<div>
 									<div className='book'>
-										<h3 align="center"> { user.username }&nbsp; </h3>
+										<h3 align="center"> { user.username } </h3>
 										<h4 align="center">Email:  { user.email } </h4>
 									</div>
 								</div>
