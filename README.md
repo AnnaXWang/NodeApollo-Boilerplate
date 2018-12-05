@@ -131,3 +131,4 @@
 * Import vs require in JS - https://insights.untapt.com/webpack-import-require-and-you-3fd7f5ea93c0
 * Install Babel for package control HTML formatting in Sublime - https://stackoverflow.com/questions/39775860/how-to-fix-sublime-text-highlighting-for-react-tutorial
 * Using input types in the frontend - https://medium.com/graphql-mastery/json-as-an-argument-for-graphql-mutations-and-queries-3cd06d252a04
+* Apollo Boost set context - https://stackoverflow.com/questions/50211088/cant-set-authentication-header-for-apollo-client

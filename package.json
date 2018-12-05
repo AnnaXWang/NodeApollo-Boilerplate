@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "client": "cd frontend && npm start",
-    "dev": "concurrently --kill-others-on-fail \"babel-node src/index.js\" \"npm run client\"",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "lint": "eslint --ignore-path .gitignore .",
     "server": "nodemon --exec babel-node src/index.js",
     "start": "nodemon --exec babel-node src/index.js",

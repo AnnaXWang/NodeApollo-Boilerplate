@@ -11,7 +11,6 @@ import { typeDefs, resolvers } from './graphql/schema';
 */
 const getMe = async req => {
   const token = req.headers['authorization'];
-  console.log(token)
   if (token) {
     try {
       return await jwt.verify(token, process.env.SECRET);
@@ -31,6 +30,7 @@ const apollo = new ApolloServer({
       const me = await getMe(req);
       return {
           secret: process.env.SECRET,
+          me: me,
       };
 	},
 });

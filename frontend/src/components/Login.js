@@ -24,10 +24,11 @@ class CreateUser extends Component {
 				<Mutation
 					mutation={user_api.mutations.SIGNIN}
 					onCompleted={
-						async(response) => {
+						(response) => {
 							if (response.signIn.token){
 								this.setState({email: '', password: ''});
-								await localStorage.setItem('token', response.signIn.token);
+								console.log(response.signIn.token)
+								localStorage.setItem('token', response.signIn.token);
 								this.props.history.push('/users');
 							}
 						}

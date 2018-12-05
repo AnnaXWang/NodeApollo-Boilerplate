@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { setContext } from 'apollo-link-context';
-import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import * as serviceWorker from './serviceWorker';
@@ -17,7 +16,7 @@ const client = new ApolloClient({
     const token = await localStorage.getItem('token');
     operation.setContext({
       headers: {
-        authorization: token ? `${token}` : ''
+        authorization: token ? `${token}` : null
       }
     });
    }
