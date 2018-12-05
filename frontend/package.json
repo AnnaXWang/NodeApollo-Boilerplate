@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "apollo-boost": "^0.1.22",
-    "eslint": "^5.9.0",
+    "babel-eslint": "^10.0.1",
     "graphql": "^14.0.2",
     "react": "^16.6.3",
     "react-apollo": "^2.3.2",
@@ -26,5 +26,11 @@
     "not op_mini all"
   ],
   "proxy": "http://localhost:5000",
-  "devDependencies": {}
+  "devDependencies": {
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/node": "^7.0.0-rc.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "nodemon": "^1.12.1"
+  }
 }
