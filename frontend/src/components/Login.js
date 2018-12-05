@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import '../App.css';
-const { mutations } = require('../api/user_api');
+import user_api from '../api/user_api';
 
 class Login extends Component {
 	constructor(props) {
@@ -22,7 +22,7 @@ class Login extends Component {
 			<div className="container">
 
 				<Mutation
-					mutation={mutations.SIGNIN}
+					mutation={user_api.mutations.SIGNIN}
 					onCompleted={
 						(response) => {
 							this.setState({email: '', password: ''});
@@ -56,7 +56,7 @@ class Login extends Component {
 									value={this.state.password}
 									onChange={this.handleChange}/>
 							</label>
-							<button type="submit">Add Todo</button>
+							<button type="submit">Login</button>
 						</form>
 					)}
 				</Mutation>

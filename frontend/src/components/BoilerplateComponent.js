@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Mutation } from 'react-apollo';
+// import { Mutation } from 'react-apollo';
 import '../App.css';
-const { mutations } = require('../api/user_api');
+// const user_api = require('../api/user_api');
 
 class BoilerplateComponent extends Component {
 	constructor(props) {

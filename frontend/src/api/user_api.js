@@ -25,7 +25,7 @@ const ADD_USER = gql`
 		$isReference: Boolean
 	){
 		addUser(
-		  input: {
+			input: {
 			username: $username,
 			email: $email,
 			password: $password,
@@ -40,10 +40,10 @@ const ADD_USER = gql`
 
 const SIGNIN = gql`
 	mutation signIn($email: String!, $password: String!){
-	    signIn(input: { email: $email,  password: $password}){
-	        token
-	    }
- 	}
+			signIn(input: { email: $email,  password: $password}){
+					token
+			}
+	}
 `;
 
 // const queries = () => [ADD_USER];
@@ -54,9 +54,11 @@ const mutations = {
 
 const queries = {
 	LIST_USERS: LIST_USERS,
-}
+};
 
-export modi= {
-  mutations: mutations,
-  queries: queries
-}
+const combined_export = {
+	mutations: mutations,
+	queries: queries,
+};
+
+export default combined_export;
