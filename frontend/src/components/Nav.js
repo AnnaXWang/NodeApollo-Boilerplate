@@ -5,8 +5,8 @@ import '../App.css';
 class Nav extends Component {
 
 	constructor(props){
-    super(props);
-  }
+		super(props);
+	}
 
 	render() {
 		return (
@@ -26,9 +26,9 @@ class Nav extends Component {
 				</ul>
 				<ul className="nav navbar-nav navbar-right">
 					<Link to="/login">
-				     <button className="btn btn-info log">
-				     		Login
-				     </button>
+						 <button className="btn btn-info log">
+								Login
+						 </button>
 				 </Link>
 				</ul>
 			</nav>
