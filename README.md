@@ -26,10 +26,15 @@
         $ rm -rf node_modules
         $ npm uninstall babel-eslint
         $ npm uninstall eslint
+        $ npm install
         $ cd frontend/node_modules/react-scripts
         $ rm -rf node_modules
         $ //go into frontend/node_modules/react-scripts/package.json and change the eslint dependency to be 5.9.0 and the babel-eslint dependency to be 10.0.1
-        $ npm install
+        $ npm install //while still in the react-scripts directory
+        $ cd ..
+        $ npm uninstall babel-eslint@9.0.0
+        $ npm uninstall eslint@5.9.0
+        $ npm install babel-eslint@10.0.1
 
 * Install concurrently (https://www.npmjs.com/package/concurrently) to test in development
 
