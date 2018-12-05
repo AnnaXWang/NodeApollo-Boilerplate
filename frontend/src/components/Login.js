@@ -3,7 +3,7 @@ import { Mutation } from 'react-apollo';
 import '../App.css';
 import user_api from '../api/user_api';
 
-class Login extends Component {
+class CreateUser extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -25,7 +25,9 @@ class Login extends Component {
 					mutation={user_api.mutations.SIGNIN}
 					onCompleted={
 						(response) => {
-							this.setState({email: '', password: ''});
+							if (response.signIn.token){
+								this.setState({email: '', password: ''});
+							}
 						}
 					}
 				>
@@ -33,11 +35,13 @@ class Login extends Component {
 						<form
 							onSubmit={e => {
 								e.preventDefault();
-								const input = {
-									email: this.state.email,
-									password: this.state.password,
+								const args = {
+									input: {
+										email: this.state.email,
+										password: this.state.password,
+									},
 								};
-								signIn({ variables: input });
+								signIn({ variables: args });
 							}}
 						>
 							<label>
@@ -65,5 +69,4 @@ class Login extends Component {
 	}
 }
 
-export default Login;
-
+export default CreateUser;

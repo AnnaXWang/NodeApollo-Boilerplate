@@ -16,33 +16,18 @@ const LIST_USERS = gql`
 `;
 
 const ADD_USER = gql`
-	mutation addUser(
-		$username: String!, 
-		$email: String!, 
-		$password: Float!, 
-		$isCandidate: Boolean, 
-		$isEmployer: Boolean, 
-		$isReference: Boolean
-	){
-		addUser(
-			input: {
-			username: $username,
-			email: $email,
-			password: $password,
-			isCandidate: $isCandidate,
-			isEmployer: $isEmployer,
-			isReference: $isReference
-		}) {
+	mutation addUser($input: newUserInput!){
+		addUser(input: $input){
 			token
 		}
 	}
 `;
 
 const SIGNIN = gql`
-	mutation signIn($email: String!, $password: String!){
-			signIn(input: { email: $email,  password: $password}){
-					token
-			}
+	mutation signIn($input: signInInput!){
+		signIn(input: $input){
+			token
+		}
 	}
 `;
 
