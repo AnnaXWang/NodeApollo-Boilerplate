@@ -9,13 +9,17 @@ import { typeDefs, resolvers } from './graphql/schema';
  Verify the token stored in the request headers
  before the request is passed to the resolvers
 */
-const getMe = async req => {
+const getMe = async(req) => {
   const token = req.headers['authorization'];
+  console.log('token in index.js')
+  console.log(token)
   if (token != 'null') {
-    jwt.verify(token, process.env.SECRET, function(err, decoded) {
+    return await jwt.verify(token, process.env.SECRET, function(err, decoded) {
       if (err){
         throw new AuthenticationError('Verification failed');
       }
+      console.log("decoded in getMe")
+      console.log(decoded)
       return decoded
     });
   }
@@ -27,6 +31,8 @@ const apollo = new ApolloServer({
     resolvers,
     context: async({ req }) => {
       const me = await getMe(req);
+      console.log("me in server")
+      console.log(me)
       return {
           secret: process.env.SECRET,
           me: me,
