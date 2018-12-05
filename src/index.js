@@ -1,14 +1,38 @@
 import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
-import { ApolloServer } from 'apollo-server-express';
+import jwt from 'jsonwebtoken';
+import { ApolloServer, AuthenticationError } from 'apollo-server-express';
 import { typeDefs, resolvers } from './graphql/schema';
 
+/*
+ Verify the token stored in the request headers
+ before the request is passed to the resolvers
+*/
+const getMe = async req => {
+  const token = req.headers['authorization'];
+  console.log(token)
+  if (token) {
+    try {
+      return await jwt.verify(token, process.env.SECRET);
+    } catch (e) {
+      throw new AuthenticationError(
+        'Your session expired. Sign in again.',
+      );
+    }
+  }
+};
+
 // create the server according to our schema
-const apollo = new ApolloServer({ typeDefs, resolvers,
-	context: async() => ({
-		secret: process.env.SECRET,
-	}),
+const apollo = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context: async({ req }) => {
+      const me = await getMe(req);
+      return {
+          secret: process.env.SECRET,
+      };
+	},
 });
 
 const app = express();

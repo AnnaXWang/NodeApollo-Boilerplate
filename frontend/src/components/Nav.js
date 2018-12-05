@@ -29,7 +29,7 @@ class Nav extends Component {
 						 <button className="btn btn-info log">
 								Login
 						 </button>
-				 </Link>
+				 	</Link>
 				</ul>
 			</nav>
 		);

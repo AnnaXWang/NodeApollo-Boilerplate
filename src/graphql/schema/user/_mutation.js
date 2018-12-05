@@ -64,7 +64,9 @@ export const mutationResolvers = {
 		},
 
 		signIn: (parent, args, context, info) => {
+			console.log("signin")
 			args = args.input;
+			console.log(args)
 			return new Promise(function(resolve, reject) {
 				return models.user.findOne({
 					where: {email: args.email},

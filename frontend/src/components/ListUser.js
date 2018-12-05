@@ -10,12 +10,16 @@ class ListUser extends Component {
 		};
 	}
 	render() {
+		console.log(localStorage.getItem('token'))
 		return (
 			<div className="container">
 				<Query query={user_api.queries.LIST_USERS}>
 					{({ loading, error, data }) => {
 						if (loading) return <p>Loading...</p>;
-						if (error) return <p>Error...</p>;
+						if (error) {
+							console.log(error.message)
+							return <p>Error...</p>;
+						}
 						return (
 							<div className="col-sm-12">
 								{!loading &&
