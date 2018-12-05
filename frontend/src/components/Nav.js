@@ -23,6 +23,9 @@ class Nav extends Component {
 					<li>
 						<Link to="/create">Create a User</Link>
 					</li>
+					<li>
+						<p onClick={() => localStorage.setItem('token', '')}>Logout</p>
+					</li>
 				</ul>
 				<ul className="nav navbar-nav navbar-right">
 					<Link to="/login">

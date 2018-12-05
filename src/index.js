@@ -11,14 +11,13 @@ import { typeDefs, resolvers } from './graphql/schema';
 */
 const getMe = async req => {
   const token = req.headers['authorization'];
-  if (token) {
-    try {
-      return await jwt.verify(token, process.env.SECRET);
-    } catch (e) {
-      throw new AuthenticationError(
-        'Your session expired. Sign in again.',
-      );
-    }
+  if (token != 'null') {
+    jwt.verify(token, process.env.SECRET, function(err, decoded) {
+      if (err){
+        throw new AuthenticationError('Verification failed');
+      }
+      return decoded
+    });
   }
 };
 
