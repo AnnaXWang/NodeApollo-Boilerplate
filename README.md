@@ -135,3 +135,4 @@
 * Apollo Boost migrations - https://github.com/apollographql/apollo-client/blob/master/docs/source/advanced/boost-migration.md
 * Apollo update on logout - https://www.apollographql.com/docs/react/recipes/authentication.html#login-logout
 * Getting updated data from cache - https://stackoverflow.com/questions/50342116/how-to-get-updated-data-from-apollo-cache/50349323#50349323
+* invoking query in graphql - https://stackoverflow.com/questions/45992025/invoking-query-of-graphql-of-apollo-client

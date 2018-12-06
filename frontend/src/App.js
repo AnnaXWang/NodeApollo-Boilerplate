@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { withApollo } from 'react-apollo';
+import requireAuth from './components/require_auth';
 import Nav from './components/Nav'; // Nav is the top navbar
 import ListUser from './components/ListUser';
 import CreateUser from './components/CreateUser';
@@ -20,7 +21,7 @@ class App extends Component {
 			<div>
 				<NavWithClient/>
 				<Route exact path='/' component={LandingPage} />
-				<Route exact path='/users' component={ListUser} />
+				<Route exact path='/users' component={withApollo(requireAuth(ListUser))} />
 				<Route exact path='/login' component={Login} />
 				<Route exact path='/create' component={CreateUser} />
 			</div>

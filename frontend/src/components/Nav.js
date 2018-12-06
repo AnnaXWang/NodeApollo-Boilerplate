@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Query } from 'react-apollo';
+import PropTypes from 'prop-types';
 import { CURRENT_USER } from '../api/user_api';
 import '../App.css';
 
@@ -26,6 +27,7 @@ class Nav extends Component {
 										// call your auth logout code then reset store
 										localStorage.setItem('token', '');
 										client.resetStore();
+										this.props.history.push('/');
 									}}>
 									Logout
 								</button>
@@ -68,4 +70,7 @@ class Nav extends Component {
 	}
 }
 
+Nav.propTypes = {
+	history: PropTypes.object,
+};
 export default withRouter(Nav);
