@@ -14,7 +14,13 @@ const name = env_db.database;
 const username = env_db.username;
 const pwd = env_db.password;
 
-sequelize = new Sequelize(name, username, pwd, env_db);
+if (process.env.DATABASE_URL){
+	sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialect: 'postgres',
+  });
+} else {
+	sequelize = new Sequelize(name, username, pwd, env_db);
+};
 
 fs
 	.readdirSync(__dirname)

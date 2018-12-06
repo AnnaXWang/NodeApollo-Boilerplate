@@ -8,7 +8,7 @@
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "lint": "eslint --ignore-path .gitignore .",
     "server": "nodemon --exec babel-node src/index.js",
-    "start": "nodemon --exec babel-node src/index.js",
+    "start": "node --exec babel-node src/index.js",
     "build": "babel src --out-dir dist",
     "serve": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"

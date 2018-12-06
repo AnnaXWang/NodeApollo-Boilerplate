@@ -10,6 +10,10 @@
     * MacOS: `brew install nodejs`
     * Windows: direct download, or use Bash on Windows 10
 
+* Install Heroku CLI and create a Heroku account
+        
+        $ brew install heroku/brew/heroku
+    
 * Install Postgres locally (Note: you may also have to install it globally)
          
         $ npm install pg --save
