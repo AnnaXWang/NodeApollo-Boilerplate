@@ -19,7 +19,14 @@ const Token = `
  }
 `;
 
-export const types = () => [User, Token];
+const signInOutput = `
+ type signInOutput {
+   token: String!
+   user: User!
+ }
+`;
+
+export const types = () => [User, Token, signInOutput];
 
 export const typeResolvers = {
 	User: {

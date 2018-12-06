@@ -7,6 +7,7 @@ import models from '../../../../db/models';
 const Query = `
  extend type Query {
    users: [User]
+   currentUser: User
    user(input: userSearchInput!): User
    candidates: [User]
    references: [User]
@@ -33,6 +34,13 @@ export const queryResolvers = {
 			async(parent, args, context, info) => {
 				return await models.user.findAll();
 			},
+		),
+		currentUser: combineResolvers(
+			isAuthenticated,
+			async(parent, args, context, info) => {
+				console.log(context)
+				return context.me;
+			}
 		),	
 		user: async(parent, args, context, info) => {
 			args = args.input;

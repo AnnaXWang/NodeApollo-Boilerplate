@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import '../App.css';
-import user_api from '../api/user_api';
+import { mutations, queries } from '../api/user_api';
 
 class CreateUser extends Component {
 	constructor(props) {
@@ -22,17 +22,26 @@ class CreateUser extends Component {
 			<div className="container">
 
 				<Mutation
-					mutation={user_api.mutations.SIGNIN}
+					mutation={mutations.SIGNIN}
 					onCompleted={
 						(response) => {
 							if (response.signIn.token){
 								this.setState({email: '', password: ''});
-								console.log(response.signIn.token)
 								localStorage.setItem('token', response.signIn.token);
 								this.props.history.push('/users');
 							}
 						}
 					}
+					update={async(cache, { data: { signIn } }) => {
+		        if (signIn.token){
+		        	await cache.reset()
+		        	console.log(cache)
+		        	cache.writeQuery({
+			          query: queries.CURRENT_USER,
+			          data: { currentUser: signIn.user }
+			        });
+		        }
+		      }}
 				>
 					{signIn => (
 						<form

@@ -1,5 +1,4 @@
 // Input types are used as arguments for Mutations and Queries.
-
 const newUserInput = `
 	input newUserInput {
 		username: String!

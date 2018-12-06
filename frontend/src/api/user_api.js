@@ -15,6 +15,16 @@ const LIST_USERS = gql`
 	}
 `;
 
+const CURRENT_USER = gql`
+  query currentUser {
+    currentUser {
+      id
+      username
+      email
+    }
+  }
+`;
+
 const ADD_USER = gql`
 	mutation addUser($input: newUserInput!){
 		addUser(input: $input){
@@ -27,18 +37,24 @@ const SIGNIN = gql`
 	mutation signIn($input: signInInput!){
 		signIn(input: $input){
 			token
+			user{
+				id
+				username
+				email
+			}
 		}
 	}
 `;
 
 // const queries = () => [ADD_USER];
-const mutations = {
+export const mutations = {
 	ADD_USER: ADD_USER,
 	SIGNIN: SIGNIN,
 };
 
-const queries = {
+export const queries = {
 	LIST_USERS: LIST_USERS,
+	CURRENT_USER: CURRENT_USER,
 };
 
 const combined_export = {
@@ -46,4 +62,3 @@ const combined_export = {
 	queries: queries,
 };
 
-export default combined_export;

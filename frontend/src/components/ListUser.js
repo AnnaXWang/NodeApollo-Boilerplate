@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Query } from 'react-apollo';
 import '../App.css';
-import user_api from '../api/user_api';
+import {queries} from '../api/user_api';
 
 class ListUser extends Component {
 	constructor(props) {
@@ -10,14 +10,12 @@ class ListUser extends Component {
 		};
 	}
 	render() {
-		console.log(localStorage.getItem('token'))
 		return (
 			<div className="container">
-				<Query query={user_api.queries.LIST_USERS}>
+				<Query query={ queries.LIST_USERS }>
 					{({ loading, error, data }) => {
 						if (loading) return <p>Loading...</p>;
 						if (error) {
-							console.log(error.message)
 							return <p>Error...</p>;
 						}
 						return (

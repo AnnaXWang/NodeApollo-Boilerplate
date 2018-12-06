@@ -15,7 +15,8 @@ const Mutation = `
 
 	signIn(
 		input: signInInput!
-	): Token!
+	): signInOutput!
+  
   }
 `;
 
@@ -64,7 +65,6 @@ export const mutationResolvers = {
 		},
 
 		signIn: (parent, args, context, info) => {
-			console.log("signin")
 			args = args.input;
 			console.log(args)
 			return new Promise(function(resolve, reject) {
@@ -72,11 +72,11 @@ export const mutationResolvers = {
 					where: {email: args.email},
 				}).then(function(user) {
 					if (!user) {
-						reject(UserInputError(
+						reject(new UserInputError(
 						  'No user found with this login credentials.',
 						));
 					}
-
+					console.log(user)
 					return user.validatePassword(args.password)
 						.then(function(isValid) {
 							if (!isValid) {
@@ -86,8 +86,10 @@ export const mutationResolvers = {
 							}
 							const secret = context.secret;
 							const newToken = createToken(user, secret, '30m');
+							console.log(user)
 							resolve({
 								token: newToken,
+								user: user,
 							});
 						}).catch(function(err) {
 						  reject(err);
