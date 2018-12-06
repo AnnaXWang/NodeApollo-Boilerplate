@@ -1,12 +1,18 @@
 {
-	"extends": "strongloop",
+	"parser": "babel-eslint",
+  "extends": [ 
+    "strongloop",
+    "plugin:react/recommended"
+  ],
   "env": {
-    "es6": true
+    "es6": true,
+    "browser": true,
+    "node": true
   },
 	"rules": {
     "no-mixed-spaces-and-tabs": [2, "smart-tabs"],
     "indent": [2, "tab"],
-    "max-len": ["error", { "ignoreTrailingComments": true }]
+    "max-len": ["error", { "ignoreTrailingComments": true, "code": 100 }]
   }, 
 	"parserOptions": {
     "sourceType": "module",

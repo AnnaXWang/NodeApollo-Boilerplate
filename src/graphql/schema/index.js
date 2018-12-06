@@ -60,7 +60,9 @@ const typeDefs = [Query, Mutation, Scalar];
  and load types and resolvers automatically
 */
 fs.readdirSync(__dirname)
-	.filter(dir => (dir.indexOf('.') < 0))
+	.filter(dir => {
+		return dir.indexOf('.') < 0 && dir.indexOf('sharedResolvers') < 0;
+	})
 	.forEach((dir) => {
 		const tmp = require(path.join(__dirname, dir)).default; // eslint-disable-line
 		resolvers = merge(resolvers, tmp.resolvers);

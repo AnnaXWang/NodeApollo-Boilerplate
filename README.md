@@ -16,7 +16,31 @@
 
     * Additional download for Postgres.app and its GUI: https://postgresapp.com/
 
-* Install Sequelize CLI globally
+* Optional: Install CRA globally (only if you want to create a react app from scratch)
+         
+        $ npm install -g create-react-app
+
+* Update the eslint version in the client/frontend to match the eslint in the backend
+         
+        $ cd frontend
+        $ rm -rf node_modules
+        $ npm uninstall babel-eslint
+        $ npm uninstall eslint
+        $ npm install
+        $ cd frontend/node_modules/react-scripts
+        $ rm -rf node_modules
+        $ //go into frontend/node_modules/react-scripts/package.json and change the eslint dependency to be 5.9.0 and the babel-eslint dependency to be 10.0.1
+        $ npm install //while still in the react-scripts directory
+        $ cd ..
+        $ npm uninstall babel-eslint@9.0.0
+        $ npm uninstall eslint@5.9.0
+        $ npm install babel-eslint@10.0.1
+
+* Install concurrently (https://www.npmjs.com/package/concurrently) to test in development
+
+        $ npm install -g concurrently
+
+* Install Sequelize CLI globally if you don't already have it
          
         $ npm install -g sequelize-cli --save
 
@@ -85,8 +109,7 @@
             {
               token
             }
-        } 
-
+        }
 
 ### References
 * https://www.robinwieruch.de/minimal-node-js-babel-setup/
@@ -103,3 +126,13 @@
 * Sequelize models vs migrations - https://www.duringthedrive.com/2017/05/06/models-migrations-sequelize-node/
 * Create foreign keys - https://stackoverflow.com/questions/50584682/sequelize-model-migration-file-and-foreign-key-which-one-is-right
 * Sequelize transactions - http://docs.sequelizejs.com/manual/tutorial/transactions.html
+* React + Apollo Webapp - https://developer.okta.com/blog/2018/10/11/build-simple-web-app-with-express-react-graphql
+* Add React to existing Apollo server - https://auth0.com/blog/develop-modern-apps-with-react-graphql-apollo-and-add-authentication/
+* Import vs require in JS - https://insights.untapt.com/webpack-import-require-and-you-3fd7f5ea93c0
+* Install Babel for package control HTML formatting in Sublime - https://stackoverflow.com/questions/39775860/how-to-fix-sublime-text-highlighting-for-react-tutorial
+* Using input types in the frontend - https://medium.com/graphql-mastery/json-as-an-argument-for-graphql-mutations-and-queries-3cd06d252a04
+* Apollo Boost set context - https://stackoverflow.com/questions/50211088/cant-set-authentication-header-for-apollo-client
+* Apollo Boost migrations - https://github.com/apollographql/apollo-client/blob/master/docs/source/advanced/boost-migration.md
+* Apollo update on logout - https://www.apollographql.com/docs/react/recipes/authentication.html#login-logout
+* Getting updated data from cache - https://stackoverflow.com/questions/50342116/how-to-get-updated-data-from-apollo-cache/50349323#50349323
+* invoking query in graphql - https://stackoverflow.com/questions/45992025/invoking-query-of-graphql-of-apollo-client

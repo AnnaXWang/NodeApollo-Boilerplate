@@ -15,7 +15,8 @@ const Mutation = `
 
 	signIn(
 		input: signInInput!
-	): Token!
+	): signInOutput!
+  
   }
 `;
 
@@ -70,11 +71,10 @@ export const mutationResolvers = {
 					where: {email: args.email},
 				}).then(function(user) {
 					if (!user) {
-						reject(UserInputError(
+						reject(new UserInputError(
 						  'No user found with this login credentials.',
 						));
 					}
-
 					return user.validatePassword(args.password)
 						.then(function(isValid) {
 							if (!isValid) {
@@ -86,6 +86,7 @@ export const mutationResolvers = {
 							const newToken = createToken(user, secret, '30m');
 							resolve({
 								token: newToken,
+								user: user,
 							});
 						}).catch(function(err) {
 						  reject(err);

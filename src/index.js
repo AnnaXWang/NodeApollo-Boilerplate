@@ -1,15 +1,37 @@
 import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
+import jwt from 'jsonwebtoken';
 import { ApolloServer } from 'apollo-server-express';
 import { typeDefs, resolvers } from './graphql/schema';
-// import { sequelize } from './models';
+
+/*
+ Verify the token stored in the request headers
+ before the request is passed to the resolvers
+*/
+const getMe = async(req) => {
+	const token = req.headers['authorization'];
+	if (token !== 'null') {
+		return await jwt.verify(token, process.env.SECRET, function(err, decoded) {
+			if (err){
+				return null;
+			}
+			return decoded;
+		});
+	}
+};
 
 // create the server according to our schema
-const apollo = new ApolloServer({ typeDefs, resolvers,
-	context: async() => ({
-		secret: process.env.SECRET,
-	}),
+const apollo = new ApolloServer({
+	typeDefs,
+	resolvers,
+	context: async({ req }) => {
+		const me = await getMe(req);
+		return {
+			secret: process.env.SECRET,
+			me: me,
+		};
+	},
 });
 
 const app = express();
@@ -29,4 +51,3 @@ app.listen({ port: port }, () => {
 	const output = '🚀 Apollo Server on http://localhost:';
 	console.log(output + port + '/graphql');
 });
-

@@ -1,10 +1,13 @@
+import { combineResolvers } from 'graphql-resolvers';
 import { filter } from 'lodash';
+import { isAuthenticated } from '../sharedResolvers/authorization';
 import models from '../../../../db/models';
 
 // NOTE: id arguments must be passed as Int and not ID
 const Query = `
  extend type Query {
    users: [User]
+   currentUser: User
    user(input: userSearchInput!): User
    candidates: [User]
    references: [User]
@@ -26,9 +29,18 @@ export const queryTypes = () => [Query];
 
 export const queryResolvers = {
 	Query: {
-		users: async(parent, args, context, info) => {
-			return await models.user.findAll();
-		},
+		users: combineResolvers(
+			isAuthenticated,
+			async(parent, args, context, info) => {
+				return await models.user.findAll();
+			},
+		),
+		currentUser: combineResolvers(
+			isAuthenticated,
+			async(parent, args, context, info) => {
+				return context.me;
+			}
+		),
 		user: async(parent, args, context, info) => {
 			args = args.input;
 			return await models.user.findOne({
