@@ -61,7 +61,7 @@ const typeDefs = [Query, Mutation, Scalar];
 */
 fs.readdirSync(__dirname)
 	.filter(dir => {
-		return dir.indexOf('.') < 0 && dir.indexOf('sharedResolvers') < 0
+		return dir.indexOf('.') < 0 && dir.indexOf('sharedResolvers') < 0;
 	})
 	.forEach((dir) => {
 		const tmp = require(path.join(__dirname, dir)).default; // eslint-disable-line

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
+import PropTypes from 'prop-types';
 import '../App.css';
 import { SIGNIN, CURRENT_USER } from '../api/user_api';
 
-class CreateUser extends Component {
+class Login extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -33,15 +34,14 @@ class CreateUser extends Component {
 						}
 					}
 					update={async(cache, { data: { signIn } }) => {
-		        if (signIn.token){
-		        	await cache.reset()
-		        	console.log(cache)
-		        	cache.writeQuery({
-			          query: CURRENT_USER,
-			          data: { currentUser: signIn.user }
-			        });
-		        }
-		      }}
+						if (signIn.token){
+							await cache.reset();
+							cache.writeQuery({
+								query: CURRENT_USER,
+								data: { currentUser: signIn.user },
+							});
+						}
+					}}
 				>
 					{signIn => (
 						<form
@@ -81,4 +81,8 @@ class CreateUser extends Component {
 	}
 }
 
-export default CreateUser;
+Login.propTypes = {
+	history: PropTypes.object,
+};
+
+export default Login;

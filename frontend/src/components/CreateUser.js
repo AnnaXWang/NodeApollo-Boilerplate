@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
+import PropTypes from 'prop-types';
 import '../App.css';
 import { ADD_USER, LIST_USERS } from '../api/user_api';
 
@@ -46,7 +47,7 @@ class CreateUser extends Component {
 							const { user } = cache.readQuery({ query: LIST_USERS });
 							cache.writeQuery({
 			          query: LIST_USERS,
-			          data: { user: user.concat([addUser]) }
+			          data: { user: user.concat([ addUser ]) },
 			        });
 						}
 				    // this.props.updateStoreAfterVote(store, vote, this.props.link.id)
@@ -114,5 +115,9 @@ class CreateUser extends Component {
 		);
 	}
 }
+
+CreateUser.propTypes = {
+	history: PropTypes.object,
+};
 
 export default CreateUser;

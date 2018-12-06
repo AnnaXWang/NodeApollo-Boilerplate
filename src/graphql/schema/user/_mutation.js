@@ -66,7 +66,6 @@ export const mutationResolvers = {
 
 		signIn: (parent, args, context, info) => {
 			args = args.input;
-			console.log(args)
 			return new Promise(function(resolve, reject) {
 				return models.user.findOne({
 					where: {email: args.email},
@@ -76,7 +75,6 @@ export const mutationResolvers = {
 						  'No user found with this login credentials.',
 						));
 					}
-					console.log(user)
 					return user.validatePassword(args.password)
 						.then(function(isValid) {
 							if (!isValid) {
@@ -86,7 +84,6 @@ export const mutationResolvers = {
 							}
 							const secret = context.secret;
 							const newToken = createToken(user, secret, '30m');
-							console.log(user)
 							resolve({
 								token: newToken,
 								user: user,

@@ -3,31 +3,29 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import ApolloClient from 'apollo-boost';
-import { ApolloProvider, withApollo } from 'react-apollo';
+import { ApolloProvider} from 'react-apollo';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:5000/graphql',
-  cache: new InMemoryCache(),
-  request: async operation => {
-    const token = await localStorage.getItem('token');
-    operation.setContext({
-      headers: {
-        authorization: token ? `${token}` : null
-      }
-    });
-   }
+	uri: 'http://localhost:5000/graphql',
+	cache: new InMemoryCache(),
+	request: async operation => {
+		const token = await localStorage.getItem('token');
+		operation.setContext({
+			headers: {
+				authorization: token ? `${token}` : null,
+			},
+		});
+	 },
 });
-
-const AppWithClient = App;
 
 ReactDOM.render(
 	<BrowserRouter>
 		<ApolloProvider client={client}>
-			<AppWithClient />
+			<App />
 		</ApolloProvider>
 	</BrowserRouter>,
 	document.getElementById('root')

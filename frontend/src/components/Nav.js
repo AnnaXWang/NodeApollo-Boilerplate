@@ -11,40 +11,39 @@ class Nav extends Component {
 	}
 
 	renderButton = () => (
-	  <Query query={CURRENT_USER} fetchPolicy="network-only">
-	    {({ client, loading, data}) => {
-	      if (loading) {
-	        return <p className="navbar-text navbar-right">Loading...</p>;
-	      }
-	      if (data) {
-	        return (
-	          <span>
-	            <ul className="nav navbar-nav navbar-right"> 
-                <button 
-                	className="btn btn-info log"
-                	onClick={() => {
-	                  // call your auth logout code then reset store
-	                  localStorage.setItem('token', '');
-	                  client.resetStore();
-	                }}
-                	>
-                  Logout
-                </button>              
-            	</ul>
-	          </span>
-	        );
-	      }
-	      return (
-	        <ul className="nav navbar-nav navbar-right">
-	           <Link to="/login">
-	              <button className="btn btn-info log">
-	                Login
-	              </button>
-	           </Link>
-	      	</ul>
-	      );
-	    }}
-	  </Query>
+		<Query query={CURRENT_USER} fetchPolicy="network-only">
+			{({ client, loading, data}) => {
+				if (loading) {
+					return <p className="navbar-text navbar-right">Loading...</p>;
+				}
+				if (data) {
+					return (
+						<span>
+							<ul className="nav navbar-nav navbar-right">
+								<button
+									className="btn btn-info log"
+									onClick={() => {
+										// call your auth logout code then reset store
+										localStorage.setItem('token', '');
+										client.resetStore();
+									}}>
+									Logout
+								</button>
+							</ul>
+						</span>
+					);
+				}
+				return (
+					<ul className="nav navbar-nav navbar-right">
+						<Link to="/login">
+							<button className="btn btn-info log">
+								Login
+							</button>
+						</Link>
+					</ul>
+				);
+			}}
+		</Query>
 	);
 
 	render() {
@@ -64,7 +63,6 @@ class Nav extends Component {
 					</li>
 				</ul>
 				{this.renderButton()}
-				
 			</nav>
 		);
 	}

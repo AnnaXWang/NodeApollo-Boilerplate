@@ -38,10 +38,9 @@ export const queryResolvers = {
 		currentUser: combineResolvers(
 			isAuthenticated,
 			async(parent, args, context, info) => {
-				console.log(context)
 				return context.me;
 			}
-		),	
+		),
 		user: async(parent, args, context, info) => {
 			args = args.input;
 			return await models.user.findOne({
