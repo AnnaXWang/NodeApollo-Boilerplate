@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Query } from 'react-apollo';
 import '../App.css';
-import {queries} from '../api/user_api';
+import { LIST_USERS } from '../api/user_api';
 
 class ListUser extends Component {
 	constructor(props) {
@@ -12,7 +12,7 @@ class ListUser extends Component {
 	render() {
 		return (
 			<div className="container">
-				<Query query={ queries.LIST_USERS }>
+				<Query query={ LIST_USERS }>
 					{({ loading, error, data }) => {
 						if (loading) return <p>Loading...</p>;
 						if (error) {

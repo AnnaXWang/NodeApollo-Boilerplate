@@ -1,6 +1,6 @@
 import { gql } from 'apollo-boost';
 
-const LIST_USERS = gql`
+export const LIST_USERS = gql`
 	query AllUsers {
 		users {
 			id
@@ -15,7 +15,7 @@ const LIST_USERS = gql`
 	}
 `;
 
-const CURRENT_USER = gql`
+export const CURRENT_USER = gql`
   query currentUser {
     currentUser {
       id
@@ -25,7 +25,7 @@ const CURRENT_USER = gql`
   }
 `;
 
-const ADD_USER = gql`
+export const ADD_USER = gql`
 	mutation addUser($input: newUserInput!){
 		addUser(input: $input){
 			token
@@ -33,7 +33,7 @@ const ADD_USER = gql`
 	}
 `;
 
-const SIGNIN = gql`
+export const SIGNIN = gql`
 	mutation signIn($input: signInInput!){
 		signIn(input: $input){
 			token
@@ -45,20 +45,3 @@ const SIGNIN = gql`
 		}
 	}
 `;
-
-// const queries = () => [ADD_USER];
-export const mutations = {
-	ADD_USER: ADD_USER,
-	SIGNIN: SIGNIN,
-};
-
-export const queries = {
-	LIST_USERS: LIST_USERS,
-	CURRENT_USER: CURRENT_USER,
-};
-
-const combined_export = {
-	mutations: mutations,
-	queries: queries,
-};
-

@@ -14,7 +14,7 @@ const getMe = async(req) => {
   if (token != 'null') {
     return await jwt.verify(token, process.env.SECRET, function(err, decoded) {
       if (err){
-        throw new AuthenticationError('Verification failed');
+        return null
       }
       return decoded
     });

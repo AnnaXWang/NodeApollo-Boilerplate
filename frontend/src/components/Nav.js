@@ -1,27 +1,17 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Query } from 'react-apollo';
-import { queries } from '../api/user_api';
+import { CURRENT_USER } from '../api/user_api';
 import '../App.css';
 
 class Nav extends Component {
 
 	constructor(props){
 		super(props);
-		// const observable = this.props.client.watchQuery({
-  //     query: queries.CURRENT_USER,
-  //     fetchPolicy: 'cache-only',
-  //   });
-  //   observable.subscribe({
-  //     next(res) {
-  //      console.log(res)
-  //     },
-  //   });
-
 	}
 
 	renderButton = () => (
-	  <Query query={queries.CURRENT_USER} fetchPolicy="network-only">
+	  <Query query={CURRENT_USER} fetchPolicy="network-only">
 	    {({ client, loading, data}) => {
 	      if (loading) {
 	        return <p className="navbar-text navbar-right">Loading...</p>;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import '../App.css';
-import { mutations, queries } from '../api/user_api';
+import { ADD_USER, LIST_USERS } from '../api/user_api';
 
 class CreateUser extends Component {
 	constructor(props) {
@@ -32,7 +32,7 @@ class CreateUser extends Component {
 			<div className="container">
 
 				<Mutation
-					mutation={mutations.ADD_USER}
+					mutation={ADD_USER}
 					onCompleted={
 						(response) => {
 							if (response.addUser.token){
@@ -43,9 +43,9 @@ class CreateUser extends Component {
 					}
 					update={
 						(cache, { data: {addUser} }) => {
-							const { user } = cache.readQuery({ query: queries.LIST_USERS });
+							const { user } = cache.readQuery({ query: LIST_USERS });
 							cache.writeQuery({
-			          query: queries.LIST_USERS,
+			          query: LIST_USERS,
 			          data: { user: user.concat([addUser]) }
 			        });
 						}
