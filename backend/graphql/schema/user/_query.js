@@ -1,7 +1,7 @@
-import { combineResolvers } from 'graphql-resolvers';
-import { filter } from 'lodash';
-import { isAuthenticated } from '../sharedResolvers/authorization';
-import models from '../../../../db/models';
+const { combineResolvers } = require('graphql-resolvers');
+const { filter } = require('lodash');
+const { isAuthenticated } = require('../sharedResolvers/authorization');
+const models = require('../../../../db/models');
 
 // NOTE: id arguments must be passed as Int and not ID
 const Query = `

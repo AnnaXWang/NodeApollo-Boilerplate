@@ -1,4 +1,4 @@
-import models from '../../../../db/models';
+const models = require('../../../../db/models');
 
 const User = `
  type User{

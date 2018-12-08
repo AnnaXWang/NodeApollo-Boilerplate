@@ -1,24 +1,23 @@
-import config from '../../config/db_config';
+const config = require('../../config/db_config');
 
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const env_db = config[env];
 const db = {};
 
 let sequelize;
 
-const name = env_db.database;
-const username = env_db.username;
-const pwd = env_db.password;
-
 if (process.env.DATABASE_URL){
 	sequelize = new Sequelize(process.env.DATABASE_URL, {
-    dialect: 'postgres',
-  });
+		dialect: 'postgres',
+	});
 } else {
+	const env_db = config[env];
+	const name = env_db.database;
+	const username = env_db.username;
+	const pwd = env_db.password;
 	sequelize = new Sequelize(name, username, pwd, env_db);
 };
 

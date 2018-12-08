@@ -10,7 +10,7 @@ import * as serviceWorker from './serviceWorker';
 import './index.css';
 
 const client = new ApolloClient({
-	uri: 'http://localhost:5000/graphql',
+	uri: '/graphql',
 	cache: new InMemoryCache(),
 	request: async operation => {
 		const token = await localStorage.getItem('token');
@@ -34,4 +34,4 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+serviceWorker.register();

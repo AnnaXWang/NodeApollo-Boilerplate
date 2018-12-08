@@ -1,10 +1,12 @@
-import 'dotenv/config';
-import cors from 'cors';
-import express from 'express';
-import jwt from 'jsonwebtoken';
-import { ApolloServer } from 'apollo-server-express';
-import { typeDefs, resolvers } from './graphql/schema';
+const path = require('path');
+const cors = require('cors');
+const express = require('express');
+const jwt = require('jsonwebtoken');
+const { ApolloServer } = require('apollo-server-express');
+const { typeDefs, resolvers } = require('./graphql/schema');
 
+const pathDotEnv = path.join(__dirname, '.env');
+require('dotenv').config({path: pathDotEnv});
 /*
  Verify the token stored in the request headers
  before the request is passed to the resolvers
@@ -25,6 +27,8 @@ const getMe = async(req) => {
 const apollo = new ApolloServer({
 	typeDefs,
 	resolvers,
+	introspection: true,
+	playground: true,
 	context: async({ req }) => {
 		const me = await getMe(req);
 		return {
@@ -37,16 +41,19 @@ const apollo = new ApolloServer({
 const app = express();
 app.use(cors());
 
-// add an API call to test that our server is running correctly
-app.get('/api/status', (req, res) => {
-	res.send({ status: 'ok' });
-});
+// add routing so that Heroku hosts correctly and serves the frontend
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static(path.join(__dirname, '../frontend/build')));
+	app.get('/*', (req, res) => {
+		res.sendFile(path.join(__dirname, '../frontend/build/', 'index.html'));
+	});
+}
 
 // add middleware so that our Apollo Server runs express
 apollo.applyMiddleware({ app });
 
 // listen on the correct port
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 5000;
 app.listen({ port: port }, () => {
 	const output = '🚀 Apollo Server on http://localhost:';
 	console.log(output + port + '/graphql');

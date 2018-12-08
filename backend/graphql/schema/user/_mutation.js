@@ -2,9 +2,9 @@
  We’ll define here the mutations and
  the associated resolvers to each mutation type
 */
-import jwt from 'jsonwebtoken';
-import { AuthenticationError, UserInputError } from 'apollo-server';
-import models from '../../../../db/models';
+const jwt = require('jsonwebtoken');
+const { AuthenticationError, UserInputError } = require('apollo-server');
+const models = require('../../../../db/models');
 
 const Mutation = `
   extend type Mutation {

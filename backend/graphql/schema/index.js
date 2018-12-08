@@ -1,8 +1,8 @@
-import fs from 'fs';
-import path from 'path';
-import { merge } from 'lodash';
-import { GraphQLScalarType } from 'graphql';
-import { Kind } from 'graphql/language';
+const fs = require('fs');
+const path = require('path');
+const { merge } = require('lodash');
+const { GraphQLScalarType } = require('graphql');
+const { Kind } = require('graphql/language');
 
 /*
 Create a base Query to be extended to query the data

@@ -68,12 +68,34 @@
 
 * Install node dependencies
     
-        $ npm install 
+        $ npm install && cd frontend && npm install
         
-* To run the linter (to be done before any commit)
+* To run the linter (to be done before any commit, after removing all build folders in backend and frontend directories)
     
         $ npm run lint 
+
+* To run the web app locally
+
+        $ npm run dev
+
+* To create a Heroku application on the command line and set up the database
+
+        $ heroku create <name of application>
+        $ heroku addons:create heroku-postgresql:hobby-dev
+        $ heroku run bash
+        $ sequelize -m
+
+* To run locally on Heroku at localhost:5000
+
+        $ cd frontend && npm run build
+        $ ..
+        $ heroku local
    
+* To push to Heroku application
+
+        $ git push heroku master
+
+    * Note: Your first time pushing to heroku may require 'npm install babel' to be added to the build script in package.json
 
 ### Query Examples
 * Example of queries the User model with arguments
@@ -139,4 +161,5 @@
 * Apollo Boost migrations - https://github.com/apollographql/apollo-client/blob/master/docs/source/advanced/boost-migration.md
 * Apollo update on logout - https://www.apollographql.com/docs/react/recipes/authentication.html#login-logout
 * Getting updated data from cache - https://stackoverflow.com/questions/50342116/how-to-get-updated-data-from-apollo-cache/50349323#50349323
-* invoking query in graphql - https://stackoverflow.com/questions/45992025/invoking-query-of-graphql-of-apollo-client
+* Invoking query in graphql - https://stackoverflow.com/questions/45992025/invoking-query-of-graphql-of-apollo-client
+* Using Sequelize in Heroku - https://sequelize.readthedocs.io/en/1.7.0/articles/heroku/

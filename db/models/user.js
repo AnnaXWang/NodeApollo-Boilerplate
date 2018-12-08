@@ -1,5 +1,5 @@
-import bcrypt from 'bcrypt';
-import server_config from '../../config/server_config';
+const bcrypt = require('bcrypt');
+const server_config = require('../../config/server_config');
 
 module.exports = (sequelize, DataTypes) => {
 	const User = sequelize.define('user', {

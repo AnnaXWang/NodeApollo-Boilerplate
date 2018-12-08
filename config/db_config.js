@@ -9,4 +9,7 @@ module.exports = {
 		dialect: 'postgres',
 		operatorsAliases: Sequelize.Op,
 	},
+	production: {
+		use_env_variable: 'DATABASE_URL',
+	},
 };
